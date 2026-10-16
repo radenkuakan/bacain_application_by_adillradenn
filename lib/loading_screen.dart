@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+
 import 'dart:async';
+
+import 'package:flutter/services.dart';
 
 class LoadingScreen extends StatefulWidget {
   const LoadingScreen({super.key});
@@ -19,29 +22,43 @@ class _LoadingScreenState extends State<LoadingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFF2B3C73),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text(
-              'Bacain',
-              style: TextStyle(color: Colors.white, fontSize: 48, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 30),
-            Image.asset(
-              'assets/logo_aplikasi/logo-bacain.png',
-              width: 250,
-            ),
-            const SizedBox(height: 30),
-            const Text(
-              'Baca, Raih dan Nikmati!!!',
-              style: TextStyle(color: Colors.white, fontStyle: FontStyle.italic, fontSize: 18),
-            ),
-            const SizedBox(height: 80),
-            const CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Colors.white)),
-          ],
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: const SystemUiOverlayStyle(
+        statusBarColor: Color(0xFF2B3C73),
+        statusBarIconBrightness: Brightness.light,
+        statusBarBrightness: Brightness.dark,
+      ),
+      child: Scaffold(
+        backgroundColor: const Color(0xFF2B3C73),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text(
+                'Bacain',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 48,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 30),
+              Image.asset('assets/logo_aplikasi/logo-bacain.png', width: 250),
+              const SizedBox(height: 30),
+              const Text(
+                'Baca, Raih dan Nikmati!!!',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontStyle: FontStyle.italic,
+                  fontSize: 18,
+                ),
+              ),
+              const SizedBox(height: 80),
+              const CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+              ),
+            ],
+          ),
         ),
       ),
     );

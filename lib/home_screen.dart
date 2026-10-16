@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -6,7 +8,7 @@ class HomeScreen extends StatelessWidget {
   void _showLogoutDialog(BuildContext context) {
     showDialog(
       context: context,
-      barrierColor: Colors.black.withOpacity(0.5), 
+      barrierColor: Colors.black.withValues(alpha: 0.5),
       builder: (BuildContext context) {
         return Dialog(
           backgroundColor: Colors.transparent,
@@ -19,16 +21,14 @@ class HomeScreen extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const SizedBox(width: 24),
-                    const Text('Yakin mau keluar?', style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold)),
-                    GestureDetector(
-                      onTap: () => Navigator.pop(context),
-                      child: const Icon(Icons.close, color: Colors.white),
-                    ),
-                  ],
+                const Text(
+                  'Yakin mau keluar?',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 const SizedBox(height: 30),
                 Row(
@@ -41,20 +41,43 @@ class HomeScreen extends StatelessWidget {
                       },
                       style: OutlinedButton.styleFrom(
                         side: const BorderSide(color: Color(0xFFFFC107)),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 30,
+                          vertical: 10,
+                        ),
                       ),
-                      child: const Text('Ya', style: TextStyle(color: Color(0xFFFFC107), fontSize: 16)),
+                      child: const Text(
+                        'Ya',
+                        style: TextStyle(
+                          color: Color(0xFFFFC107),
+                          fontSize: 16,
+                        ),
+                      ),
                     ),
                     const SizedBox(width: 20),
                     ElevatedButton(
                       onPressed: () => Navigator.pop(context),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFFFFC107),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 30,
+                          vertical: 10,
+                        ),
                       ),
-                      child: const Text('Tidak', style: TextStyle(color: Color(0xFF2B3C73), fontSize: 16, fontWeight: FontWeight.bold)),
+                      child: const Text(
+                        'Tidak',
+                        style: TextStyle(
+                          color: Color(0xFF2B3C73),
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -70,12 +93,20 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: const Color(0xFF2B3C73),
         title: Row(
           children: [
             Image.asset('assets/logo_aplikasi/logo-bacain.png', height: 40),
             const SizedBox(width: 10),
-            const Text('Bacain', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 24)),
+            const Text(
+              'Bacain',
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 24,
+              ),
+            ),
           ],
         ),
         actions: [
@@ -95,32 +126,69 @@ class HomeScreen extends StatelessWidget {
               TextField(
                 decoration: InputDecoration(
                   hintText: 'Cari',
-                  suffixIcon: const Icon(Icons.search, color: Colors.black54),
+                  hintStyle: const TextStyle(
+                    fontSize: 18,
+                    color: Colors.black38,
+                  ),
+                  suffixIcon: const Icon(
+                    Icons.search,
+                    color: Colors.black87,
+                    size: 28,
+                  ),
                   filled: true,
                   fillColor: Colors.white,
-                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(30), borderSide: BorderSide.none),
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
+                  contentPadding: const EdgeInsets.symmetric(
+                    horizontal: 24,
+                    vertical: 14,
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30),
+                    borderSide: const BorderSide(color: Color(0xFFDADADA)),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30),
+                    borderSide: const BorderSide(color: Color(0xFF2B3C73)),
+                  ),
                 ),
               ),
               const SizedBox(height: 25),
-              const Text('Selamat datang @username', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Color(0xFF2B3C73))),
+              const Text(
+                'Selamat datang @zoerogf',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF2B3C73),
+                ),
+              ),
               const SizedBox(height: 15),
               Container(
                 padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(color: const Color(0xFFF3E5AB), borderRadius: BorderRadius.circular(20)),
+                decoration: BoxDecoration(
+                  color: const Color(0xFFF3E5AB),
+                  borderRadius: BorderRadius.circular(20),
+                ),
                 child: const Text(
                   'Siap menjelajahi dunia baru lewat buku hari ini?\nTemukan buku yang menarik, baca, bagikan ceritamu, dan kumpulkan poin untuk mendapatkan reward!',
                   style: TextStyle(fontSize: 14, color: Color(0xFF2B3C73)),
                 ),
               ),
               const SizedBox(height: 30),
-              
+
               Center(
-                child: Image.asset('assets/infografis_cara_pakai_aplikasi/infografis.png'),
+                child: Image.asset(
+                  'assets/infografis_cara_pakai_aplikasi/infografis.png',
+                ),
               ),
-              
+
               const SizedBox(height: 30),
-              const Text('10 Buku Terpopuler', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xFF2B3C73))),
+              const Text(
+                '10 Buku Terpopuler',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF2B3C73),
+                ),
+              ),
               const SizedBox(height: 15),
               GridView.builder(
                 shrinkWrap: true,
@@ -145,53 +213,89 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
                       Positioned(
-                        top: -5,
-                        left: -8,
-                        child: Icon(Icons.star, color: const Color(0xFFFFC107), size: 38),
+                        top: -3,
+                        left: -3,
+                        child: SizedBox(
+                          width: 30,
+                          height: 30,
+                          child: ClipPath(
+                            clipper: _RankBadgeClipper(),
+                            child: Container(
+                              color: const Color(0xFFFFEB3B),
+                              alignment: Alignment.center,
+                              child: Text(
+                                '${index + 1}',
+                                style: const TextStyle(
+                                  color: Color(0xFF2B3C73),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 13,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
                       ),
-                      Positioned(
-                        top: 5,
-                        left: 8,
-                        child: Text('${index + 1}', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12)),
-                      )
                     ],
                   );
                 },
               ),
               const SizedBox(height: 30),
-              
+
               Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  const Icon(Icons.bookmark_border, size: 50, color: Colors.black87), 
-                  const SizedBox(width: 8), 
-                  Expanded( 
+                  const Icon(
+                    Icons.bookmark_border,
+                    size: 50,
+                    color: Colors.black87,
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Text(
-                          'Koleksi Buku', 
-                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Color(0xFF2B3C73)), 
-                          maxLines: 1, 
-                        ), 
+                          'Koleksi Buku',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15,
+                            color: Color(0xFF2B3C73),
+                          ),
+                          maxLines: 1,
+                        ),
                         const SizedBox(height: 5),
                         ElevatedButton(
                           onPressed: () {
-                             Navigator.pushReplacementNamed(context, '/collection');
+                            Navigator.pushNamed(context, '/collection');
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: const Color(0xFFFFC107),
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8), 
-                            minimumSize: const Size(0, 30), 
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 14,
+                              vertical: 8,
+                            ),
+                            minimumSize: const Size(0, 30),
                           ),
-                          child: const Text('Lihat Koleksi', style: TextStyle(color: Color(0xFF2B3C73), fontWeight: FontWeight.bold, fontSize: 11)), 
+                          child: const Text(
+                            'Lihat Koleksi',
+                            style: TextStyle(
+                              color: Color(0xFF2B3C73),
+                              fontWeight: FontWeight.bold,
+                              fontSize: 11,
+                            ),
+                          ),
                         ),
                       ],
                     ),
                   ),
                   const SizedBox(width: 5),
-                  Image.asset('assets/logo_aplikasi/logo-bacain.png', height: 75), 
+                  Image.asset(
+                    'assets/logo_aplikasi/logo-bacain.png',
+                    height: 75,
+                  ),
                 ],
               ),
               const SizedBox(height: 20),
@@ -215,17 +319,40 @@ class HomeScreen extends StatelessWidget {
           BottomNavigationBarItem(icon: Icon(Icons.book_outlined), label: ''),
         ],
         onTap: (index) {
-          if (index == 0) {
-            Navigator.pushReplacementNamed(context, '/home');
-          } else if (index == 1) {
-            Navigator.pushReplacementNamed(context, '/profile');
-          } else if (index == 2) {
-            Navigator.pushReplacementNamed(context, '/leaderboard'); 
-          } else if (index == 3) {
-            Navigator.pushReplacementNamed(context, '/collection'); 
-          }
+          if (index == 0) return;
+          const routes = ['/home', '/profile', '/leaderboard', '/collection'];
+          Navigator.pushNamed(context, routes[index]);
         },
       ),
     );
   }
+}
+
+class _RankBadgeClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    final center = Offset(size.width / 2, size.height / 2);
+    final radius = math.min(size.width, size.height) / 2;
+    final path = Path();
+
+    for (var point = 0; point < 16; point++) {
+      final angle = -math.pi / 2 + point * math.pi / 8;
+      final pointRadius = radius * (point.isEven ? 1 : 0.72);
+      final position = Offset(
+        center.dx + math.cos(angle) * pointRadius,
+        center.dy + math.sin(angle) * pointRadius,
+      );
+
+      if (point == 0) {
+        path.moveTo(position.dx, position.dy);
+      } else {
+        path.lineTo(position.dx, position.dy);
+      }
+    }
+
+    return path..close();
+  }
+
+  @override
+  bool shouldReclip(covariant _RankBadgeClipper oldClipper) => false;
 }

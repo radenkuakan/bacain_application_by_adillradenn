@@ -1,124 +1,105 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+import 'leaderboard_profile_screen.dart';
 
 class LeaderboardScreen extends StatelessWidget {
   const LeaderboardScreen({super.key});
 
+  static const List<_LeaderboardEntry> _entries = [
+    _LeaderboardEntry(1, '3mamah', '7070'),
+    _LeaderboardEntry(2, 'zoerogf', '7000'),
+    _LeaderboardEntry(3, 'alya_margaasih', '6000'),
+    _LeaderboardEntry(4, 'myp_sebenarnya', '5000'),
+    _LeaderboardEntry(5, 'kopomacett', '4000'),
+    _LeaderboardEntry(6, 'when_yh', '3000'),
+    _LeaderboardEntry(7, 'yarreu525', '2068'),
+    _LeaderboardEntry(8, 'pacarjimin', '2030'),
+    _LeaderboardEntry(9, 'starboyy__', '2011'),
+    _LeaderboardEntry(10, 'nyawit_02', '80'),
+  ];
+
   @override
   Widget build(BuildContext context) {
-    final List<Map<String, String>> leaderboardData = [
-      {"no": "1", "username": "3mamah", "point": "7070"},
-      {"no": "2", "username": "zoerogf", "point": "7069"},
-      {"no": "3", "username": "alya_margaasih", "point": "7068"},
-      {"no": "4", "username": "salsa.tasik", "point": "7058"},
-      {"no": "5", "username": "kimpul premium", "point": "7050"},
-      {"no": "6", "username": "nopalkoepo", "point": "7041"},
-      {"no": "7", "username": "anan.uber", "point": "7038"},
-      {"no": "8", "username": "whenyh_2026", "point": "7034"},
-      {"no": "9", "username": "demi_kemuliaan", "point": "7030"},
-      {"no": "10", "username": "tinkerbell", "point": "6070"},
-      {"no": "11", "username": "silvermist", "point": "6069"},
-      {"no": "12", "username": "hayang.jajan", "point": "6068"},
-      {"no": "13", "username": "bandrek_balap", "point": "6058"},
-      {"no": "14", "username": "belum.mandi", "point": "6050"},
-      {"no": "15", "username": "dila.sukabumi", "point": "6041"},
-      {"no": "16", "username": "doa_geprek10", "point": "6038"},
-    ];
-
     return Scaffold(
+      backgroundColor: const Color(0xFFF6F3EC),
       appBar: AppBar(
         backgroundColor: const Color(0xFF2B3C73),
         elevation: 0,
-        toolbarHeight: 0, 
+        toolbarHeight: 0,
+        systemOverlayStyle: const SystemUiOverlayStyle(
+          statusBarColor: Color(0xFF2B3C73),
+          statusBarIconBrightness: Brightness.light,
+          statusBarBrightness: Brightness.dark,
+        ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(25.0),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.fromLTRB(25, 25, 25, 30),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              children: [
-                const Icon(Icons.leaderboard, size: 45, color: Color(0xFFFFC107)),
-                const SizedBox(width: 15),
-                const Text(
-                  'Leaderboard',
-                  style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.black54),
-                ),
-              ],
+            Transform.translate(
+              offset: const Offset(-25, -9),
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: 56,
+                    child: IconButton(
+                      icon: const Icon(
+                        Icons.arrow_circle_left_outlined,
+                        size: 40,
+                        color: Color(0xFF2B3C73),
+                      ),
+                      onPressed: () => Navigator.pop(context),
+                    ),
+                  ),
+                  const Text(
+                    'Leaderboard',
+                    style: TextStyle(
+                      color: Colors.black54,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 24,
+                    ),
+                  ),
+                ],
+              ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 12),
             TextField(
               decoration: InputDecoration(
                 hintText: 'Cari',
-                suffixIcon: const Icon(Icons.search, color: Colors.black54),
+                hintStyle: const TextStyle(fontSize: 18, color: Colors.black38),
+                suffixIcon: const Icon(
+                  Icons.search,
+                  color: Colors.black87,
+                  size: 28,
+                ),
                 filled: true,
                 fillColor: Colors.white,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(30), 
-                  borderSide: const BorderSide(color: Colors.black12)
+                contentPadding: const EdgeInsets.symmetric(
+                  horizontal: 24,
+                  vertical: 14,
                 ),
-                contentPadding: const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(30),
+                  borderSide: const BorderSide(color: Color(0xFFDADADA)),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(30),
+                  borderSide: const BorderSide(color: Color(0xFF2B3C73)),
+                ),
               ),
             ),
-            const SizedBox(height: 20),
-            Expanded(
-              child: Container(
-                decoration: BoxDecoration(
-                  color: const Color(0xFFFDECB2),
-                  borderRadius: BorderRadius.circular(15),
-                  boxShadow: [
-                    BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 5, offset: const Offset(0, 3)),
-                  ],
-                ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(15),
-                  child: SingleChildScrollView(
-                    child: Table(
-                      border: TableBorder.symmetric(inside: const BorderSide(color: Colors.black12, width: 1)),
-                      columnWidths: const {
-                        0: FixedColumnWidth(60),
-                        1: FlexColumnWidth(),
-                        2: FlexColumnWidth(),
-                      },
-                      children: [
-                        const TableRow(
-                          decoration: BoxDecoration(
-                            border: Border(bottom: BorderSide(color: Colors.black12, width: 1)),
-                          ),
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.symmetric(vertical: 20),
-                              child: Text('No', textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold, color: Color(0xFF2B3C73))),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.symmetric(vertical: 20, horizontal: 15),
-                              child: Text('Username', style: TextStyle(fontWeight: FontWeight.bold, color: Color(0xFF2B3C73))),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.symmetric(vertical: 20),
-                              child: Text('Point', textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold, color: Color(0xFF2B3C73))),
-                            ),
-                          ],
-                        ),
-                        ...leaderboardData.map((data) => TableRow(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 15),
-                              child: Text(data['no']!, textAlign: TextAlign.center, style: const TextStyle(color: Color(0xFF2B3C73))),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
-                              child: Text(data['username']!, style: const TextStyle(fontWeight: FontWeight.bold, color: Color(0xFF2B3C73))),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 15),
-                              child: Text(data['point']!, textAlign: TextAlign.center, style: const TextStyle(color: Color(0xFF2B3C73))),
-                            ),
-                          ],
-                        )).toList(),
-                      ],
-                    ),
-                  ),
-                ),
+            const SizedBox(height: 18),
+            LayoutBuilder(
+              builder: (context, constraints) =>
+                  _buildPodium(constraints.maxWidth),
+            ),
+            const SizedBox(height: 18),
+            ..._entries.map(
+              (entry) => Padding(
+                padding: const EdgeInsets.only(bottom: 14),
+                child: _buildRankingRow(context, entry),
               ),
             ),
           ],
@@ -127,30 +108,203 @@ class LeaderboardScreen extends StatelessWidget {
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         backgroundColor: const Color(0xFF2B3C73),
-        currentIndex: 2, // 2 = Leaderboard
+        currentIndex: 2,
         selectedItemColor: Colors.white,
         unselectedItemColor: Colors.white54,
         showSelectedLabels: false,
         showUnselectedLabels: false,
         iconSize: 30,
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home_outlined), label: ''),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
           BottomNavigationBarItem(icon: Icon(Icons.person_outline), label: ''),
-          BottomNavigationBarItem(icon: Icon(Icons.star), label: ''), // Solid
+          BottomNavigationBarItem(icon: Icon(Icons.star), label: ''),
           BottomNavigationBarItem(icon: Icon(Icons.book_outlined), label: ''),
         ],
         onTap: (index) {
-          if (index == 0) {
-            Navigator.pushReplacementNamed(context, '/home');
-          } else if (index == 1) {
-            Navigator.pushReplacementNamed(context, '/profile');
-          } else if (index == 2) {
-            Navigator.pushReplacementNamed(context, '/leaderboard');
-          } else if (index == 3) {
-            Navigator.pushReplacementNamed(context, '/collection');
-          }
+          if (index == 2) return;
+          const routes = ['/home', '/profile', '/leaderboard', '/collection'];
+          Navigator.pushNamed(context, routes[index]);
         },
       ),
     );
   }
+
+  Widget _buildPodium(double width) {
+    final podiumHeight = width * 0.57;
+    const profileHeadroom = 32.0;
+    final height = podiumHeight + profileHeadroom;
+
+    return SizedBox(
+      height: height,
+      child: Stack(
+        children: [
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Image.asset(
+              'assets/gambar-grafis-juara-leaderboard/graafis-juara.png',
+              width: width,
+              fit: BoxFit.fitWidth,
+            ),
+          ),
+          Positioned(
+            top: 0,
+            left: width * 0.35,
+            child: _buildPodiumUser(_entries[0], width * 0.20, width * 0.30),
+          ),
+          Positioned(
+            top: podiumHeight * 0.12 + profileHeadroom - 8,
+            left: width * 0.10,
+            child: _buildPodiumUser(_entries[1], width * 0.17, width * 0.24),
+          ),
+          Positioned(
+            top: podiumHeight * 0.22 + profileHeadroom - 8,
+            left: width * 0.68,
+            child: _buildPodiumUser(_entries[2], width * 0.17, width * 0.24),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildPodiumUser(
+    _LeaderboardEntry entry,
+    double avatarSize,
+    double labelWidth,
+  ) {
+    return SizedBox(
+      width: labelWidth,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          ClipOval(
+            child: Image.asset(
+              entry.avatarPath,
+              width: avatarSize,
+              height: avatarSize,
+              fit: BoxFit.cover,
+            ),
+          ),
+          Container(
+            width: labelWidth,
+            padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 3),
+            decoration: BoxDecoration(
+              color: const Color(0xFF2B3C73),
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: Column(
+              children: [
+                Text(
+                  entry.username,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 8,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  '${entry.points} Point',
+                  style: const TextStyle(color: Colors.white, fontSize: 6),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildRankingRow(BuildContext context, _LeaderboardEntry entry) {
+    final isCurrentUser = entry.rank == 2;
+    final foregroundColor = isCurrentUser
+        ? const Color(0xFFFFE99B)
+        : const Color(0xFF2B3C73);
+
+    return GestureDetector(
+      onTap: () {
+        if (isCurrentUser) {
+          Navigator.pushNamed(context, '/profile');
+        } else {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => LeaderboardProfileScreen(
+                username: entry.username,
+                avatarAsset: entry.avatarPath,
+                points: int.parse(entry.points),
+              ),
+            ),
+          );
+        }
+      },
+      child: Container(
+        height: 52,
+        padding: const EdgeInsets.symmetric(horizontal: 12),
+        decoration: BoxDecoration(
+          color: isCurrentUser
+              ? const Color(0xFF2B3C73)
+              : const Color(0xFFF9E8A0),
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.22),
+              blurRadius: 5,
+              offset: const Offset(0, 5),
+            ),
+          ],
+        ),
+        child: Row(
+          children: [
+            SizedBox(
+              width: 22,
+              child: Text(
+                '${entry.rank}',
+                style: TextStyle(color: foregroundColor, fontSize: 13),
+              ),
+            ),
+            ClipOval(
+              child: Image.asset(
+                entry.avatarPath,
+                width: 38,
+                height: 38,
+                fit: BoxFit.cover,
+              ),
+            ),
+            const SizedBox(width: 8),
+            Expanded(
+              child: Text(
+                isCurrentUser ? '${entry.username} (You)' : entry.username,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  color: foregroundColor,
+                  fontSize: 13,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            SizedBox(
+              width: 92,
+              child: Text(
+                '${entry.points} Point',
+                maxLines: 1,
+                style: TextStyle(color: foregroundColor, fontSize: 12),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _LeaderboardEntry {
+  const _LeaderboardEntry(this.rank, this.username, this.points)
+    : avatarPath = 'assets/foto-profil-leaderboard/$rank.png';
+
+  final int rank;
+  final String username;
+  final String points;
+  final String avatarPath;
 }

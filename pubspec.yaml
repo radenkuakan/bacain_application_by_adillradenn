@@ -21,6 +21,12 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
+    - assets/buku-review/
+    - assets/barcode/
+    - assets/koleksi-buku-semua/
+    - assets/foto_profil/
     - assets/infografis_cara_pakai_aplikasi/
     - assets/koleksi_buku/
     - assets/logo_aplikasi/
+    - assets/gambar-grafis-juara-leaderboard/
+    - assets/foto-profil-leaderboard/
