@@ -1,17 +1,9 @@
-# bacain_application_by_adillradenn
+# TUGAS 5 - Aplikasi Project dengan Flutter Dart
 
-A new Flutter project.
+## Identitas Mahasiswa
+* **Nama:** Adillatus Silfi, Raden Satria Wiratama
+* **NIM:** 	2402039, 2409605
+* **Kelas:** 5A / S1 Pendidikan Multimedia
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+bacain_application_by_adillradenn
